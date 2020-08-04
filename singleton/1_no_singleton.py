@@ -1,14 +1,7 @@
 class ListOfPlayers:
-    __instance = None
-
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.next_player_id = 1
-        self.players = dict()  # {1: 'Nome'}
-
-    def __new__(cls, *args, **kwargs):
-        if cls.__instance is None:
-            cls.__instance = super().__new__(cls, *args, **kwargs)
-        return cls.__instance
+        self.players = dict()
 
     def fetch(self):
         return self.players
@@ -24,6 +17,7 @@ if __name__ == "__main__":
     players.add("Gabriel")
     players.add("Sal")
     print(players.fetch())
-    #....
+    # Dez mil anos depois...
     players2 = ListOfPlayers()
     print(players2.fetch())
+    assert id(players2) == id(players)
